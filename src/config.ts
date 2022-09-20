@@ -13,7 +13,7 @@ class Config {
   private readonly DEFAULT_DATABASE_URL = process.env.DATABASE_URL
 
   constructor() {
-    this.DATABASE_URL = process.env.DATABASE_URL
+    this.DATABASE_URL = process.env.DATABASE_URL || this.DEFAULT_DATABASE_URL
     this.JWT_TOKEN = process.env.JWT_TOKEN || '1234'
     this.NODE_ENV = process.env.NODE_ENV || ''
     this.SECRET_KEY_ONE = process.env.SECRET_KEY_ONE || ''

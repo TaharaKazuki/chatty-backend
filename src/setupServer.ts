@@ -8,7 +8,7 @@ import HTTP_STATUS from 'http-status-codes'
 import 'express-async-errors'
 import helmet from 'helmet'
 
-const SERVER_PORT = 5000
+const SERVER_PORT = 8000
 
 export class ChattyServer {
   private app: Application

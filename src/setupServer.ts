@@ -11,6 +11,7 @@ import { createAdapter } from '@socket.io/redis-adapter'
 import 'express-async-errors'
 import helmet from 'helmet'
 import { config } from './config'
+import applicationRoutes from './routes'
 
 const SERVER_PORT = 8000
 
@@ -57,7 +58,9 @@ export class ChattyServer {
     app.use(urlencoded({ extended: true, limit: '50mb' }))
   }
 
-  private routeMiddleware(app: Application): void {}
+  private routeMiddleware(app: Application): void {
+    applicationRoutes(app)
+  }
 
   private globalErrorHandler(app: Application): void {}
 
@@ -66,7 +69,7 @@ export class ChattyServer {
       const httpServer: http.Server = new http.Server(app)
       const socketIO: Server = await this.createSocketIO(httpServer)
       this.startHttpServer(httpServer)
-      this.socketIOConnection(socketIO)
+      this.socketIOConnections(socketIO)
     } catch (error) {
       console.info(error)
     }
@@ -93,5 +96,5 @@ export class ChattyServer {
     })
   }
 
-  private socketIOConnection(io: Server): void {}
+  private socketIOConnections(io: Server): void {}
 }
